@@ -1,0 +1,61 @@
+{% extends 'parking/base.html' %}
+
+{% block content %}
+
+<div style="display: flex; align-items: center; gap: 50px;">
+
+    <!-- LEFT -->
+    <div style="width: 50%;">
+        <h1 style="font-size: 36px; color: #0a58ca;">
+            Ứng dụng quản lý bãi đỗ xe thông minh
+        </h1>
+
+        <h3 style="color: #555;">
+            Quản lý – theo dõi – thống kê bãi đỗ xe theo thời gian thực
+        </h3>
+
+        <p>
+            Hệ thống hỗ trợ quản lý bãi đỗ xe, hiển thị vị trí,
+            số chỗ trống và doanh thu theo tháng.
+        </p>
+
+        <br>
+
+        <a href="{% url 'parking_list' %}" class="btn">
+            Xem danh sách bãi đỗ xe
+        </a>
+    </div>
+
+    <!-- RIGHT -->
+    <div style="width: 50%;">
+        <img src="https://cdn-icons-png.flaticon.com/512/854/854878.png" width="100%">
+    </div>
+
+</div>
+
+<br><br>
+
+<hr>
+
+<h2 style="text-align:center;">⚙️ Hoạt động với 3 bước</h2>
+
+<div style="display:flex; justify-content:space-around; margin-top:30px;">
+
+    <div>
+        <h3>📍 Quản lý bãi</h3>
+        <p>Thêm – sửa – xóa bãi đỗ xe</p>
+    </div>
+
+    <div>
+        <h3>📊 Thống kê</h3>
+        <p>Doanh thu – số chỗ trống</p>
+    </div>
+
+    <div>
+        <h3>🗺 Bản đồ</h3>
+        <p>Hiển thị bãi đỗ xe gần bạn</p>
+    </div>
+
+</div>
+
+{% endblock %}

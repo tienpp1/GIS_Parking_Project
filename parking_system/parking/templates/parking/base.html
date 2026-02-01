@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Hệ thống quản lý bãi đỗ xe</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0a58ca;
+            padding: 15px 40px;
+        }
+
+        .navbar .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== CONTENT ===== */
+        .content {
+            padding: 40px;
+        }
+
+        /* ===== BUTTON ===== */
+        .btn {
+            background-color: #ffc107;
+            color: black;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">🚗 Parking GIS</div>
+    <div>
+        <a href="{% url 'home' %}">Trang chủ</a>
+        <a href="{% url 'parking_list' %}">Bãi đỗ xe</a>
+        <a href="#">Bản đồ</a>
+        <a href="#">Thống kê</a>
+        <a href="/admin/">Quản trị</a>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

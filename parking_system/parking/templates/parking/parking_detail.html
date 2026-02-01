@@ -1,0 +1,19 @@
+{% extends 'parking/base.html' %}
+
+{% block content %}
+<h2>📍 Chi tiết bãi đỗ xe</h2>
+
+<p><strong>Tên bãi:</strong> {{ parking_lot.name }}</p>
+<p><strong>Địa chỉ:</strong> {{ parking_lot.address }}</p>
+<p><strong>Khu vực:</strong> {{ parking_lot.area }}</p>
+<p><strong>Loại bãi:</strong> {{ parking_lot.parking_type }}</p>
+<p><strong>Số chỗ trống:</strong> {{ parking_lot.available_slots }} / {{ parking_lot.capacity }}</p>
+<p><strong>Trạng thái:</strong> {{ parking_lot.get_status_display }}</p>
+
+<hr>
+
+<h3>🗺 Vị trí bãi đỗ xe</h3>
+<p>(Bản đồ sẽ được tích hợp tại đây)</p>
+
+<a href="{% url 'parking_list' %}">← Quay lại danh sách</a>
+{% endblock %}

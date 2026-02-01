@@ -1,0 +1,39 @@
+{% extends 'parking/base.html' %}
+
+{% block content %}
+<h2>📋 Danh sách bãi đỗ xe</h2>
+
+<table>
+    <tr>
+        <th>Tên bãi</th>
+        <th>Khu vực</th>
+        <th>Loại bãi</th>
+        <th>Số chỗ trống</th>
+        <th>Trạng thái</th>
+        <th>Chi tiết</th>
+    </tr>
+
+    {% for p in parking_lots %}
+    <tr>
+        <td>{{ p.name }}</td>
+        <td>{{ p.area }}</td>
+        <td>{{ p.parking_type }}</td>
+        <td>{{ p.available_slots }} / {{ p.capacity }}</td>
+        <td>
+            {% if p.status == 'open' %}
+                <span class="status-open">Còn hoạt động</span>
+            {% else %}
+                <span class="status-closed">Tạm ngưng</span>
+            {% endif %}
+        </td>
+        <td>
+            <a href="{% url 'parking_detail' p.id %}">Xem</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="6">Chưa có bãi đỗ xe nào.</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
