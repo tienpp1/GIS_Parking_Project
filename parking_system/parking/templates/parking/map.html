@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bản đồ bãi đỗ xe</title>
+
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Bản đồ bãi đỗ xe</h2>
+
+<div id="map"></div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    // 1️⃣ KHỞI TẠO BẢN ĐỒ (TP.HCM)
+    var map = L.map('map').setView([10.7769, 106.7009], 13);
+
+    // 2️⃣ TILE MAP
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    // 3️⃣ DỮ LIỆU TỪ DJANGO
+    var parkingLots = {{ parking_lots|safe }};
+
+    // 4️⃣ VẼ MARKER + CLICK CHUYỂN TRANG
+    parkingLots.forEach(function(p) {
+        if (p.latitude && p.longitude) {
+
+            var marker = L.marker([p.latitude, p.longitude]).addTo(map);
+
+            marker.bindPopup(
+                "<b>" + p.name + "</b><br>" +
+                "Địa chỉ: " + p.address + "<br>" +
+                "<i>Click marker để xem chi tiết</i>"
+            );
+
+            // 👉 CÁCH 2: CLICK → REDIRECT
+            marker.on('click', function () {
+                window.location.href = "/parking/" + p.id + "/";
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
